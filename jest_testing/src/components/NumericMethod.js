@@ -1,9 +1,5 @@
-import React from 'react';
-import App from '../App';
-
-function addNumbers(){
-
-    return <h1>{1 + 2}</h1>
+function addNumbers(a, b) {
+  return a + b;
 }
 
 export default addNumbers;
