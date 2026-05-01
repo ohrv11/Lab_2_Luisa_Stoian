@@ -1,27 +1,25 @@
 import capitalize from '../components/StringUtils';
 
 describe('StringUtils - capitalize', () => {
-  test('capitalizes a lowercase word', () => {
-    expect(capitalize('hello')).toBe('Hello');
+  describe('valid string inputs', () => {
+    test.each([
+      ['hello', 'Hello'],
+      ['wOrLd', 'World'],
+      ['', ''],
+      ['a', 'A'],
+      ['A', 'A'],
+    ])('capitalize("%s") = "%s"', (input, expected) => {
+      expect(capitalize(input)).toBe(expected);
+    });
   });
 
-  test('capitalizes a mixed-case word', () => {
-    expect(capitalize('wOrLd')).toBe('World');
-  });
+  describe('error handling', () => {
+    test('throws when input is not a string', () => {
+      expect(() => capitalize(123)).toThrow(TypeError);
+    });
 
-  test('returns an empty string for empty input', () => {
-    expect(capitalize('')).toBe('');
-  });
-
-  test('capitalizes a single lowercase letter', () => {
-    expect(capitalize('a')).toBe('A');
-  });
-
-  test('keeps a single uppercase letter unchanged', () => {
-    expect(capitalize('A')).toBe('A');
-  });
-
-  test('throws when input is not a string', () => {
-    expect(() => capitalize(123)).toThrow(TypeError);
+    test('throws when input is null', () => {
+      expect(() => capitalize(null)).toThrow(TypeError);
+    });
   });
 });

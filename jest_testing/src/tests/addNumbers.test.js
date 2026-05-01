@@ -1,39 +1,29 @@
 import addNumbers from '../components/NumericMethod';
 
 describe('NumericMethod - addNumbers', () => {
-  test('should add two positive numbers', () => {
-    expect(addNumbers(2, 3)).toBe(5);
+  describe('valid number pairs', () => {
+    test.each([
+      [2, 3, 5],
+      [-5, -3, -8],
+      [10, -4, 6],
+      [5, 0, 5],
+      [0, 0, 0],
+      [-1, 0, -1],
+      [0, 1, 1],
+      [1.5, 2.5, 4],
+      [1000000, 2000000, 3000000],
+    ])('addNumbers(%i, %i) = %i', (a, b, expected) => {
+      expect(addNumbers(a, b)).toBe(expected);
+    });
   });
 
-  test('should add two negative numbers', () => {
-    expect(addNumbers(-5, -3)).toBe(-8);
-  });
+  describe('error handling', () => {
+    test('throws when first argument is not a number', () => {
+      expect(() => addNumbers('2', 3)).toThrow(TypeError);
+    });
 
-  test('should add a positive and negative number', () => {
-    expect(addNumbers(10, -4)).toBe(6);
-  });
-
-  test('should add zero to a number', () => {
-    expect(addNumbers(5, 0)).toBe(5);
-  });
-
-  test('should add two zeros', () => {
-    expect(addNumbers(0, 0)).toBe(0);
-  });
-
-  test('should add a negative number and zero', () => {
-    expect(addNumbers(-1, 0)).toBe(-1);
-  });
-
-  test('should add zero and a positive number', () => {
-    expect(addNumbers(0, 1)).toBe(1);
-  });
-
-  test('should add decimal numbers', () => {
-    expect(addNumbers(1.5, 2.5)).toBe(4);
-  });
-
-  test('should handle large numbers', () => {
-    expect(addNumbers(1000000, 2000000)).toBe(3000000);
+    test('throws when second argument is not a number', () => {
+      expect(() => addNumbers(2, '3')).toThrow(TypeError);
+    });
   });
 });
