@@ -21,6 +21,14 @@ describe('NumericMethod - addNumbers', () => {
     expect(addNumbers(0, 0)).toBe(0);
   });
 
+  test('should add a negative number and zero', () => {
+    expect(addNumbers(-1, 0)).toBe(-1);
+  });
+
+  test('should add zero and a positive number', () => {
+    expect(addNumbers(0, 1)).toBe(1);
+  });
+
   test('should add decimal numbers', () => {
     expect(addNumbers(1.5, 2.5)).toBe(4);
   });

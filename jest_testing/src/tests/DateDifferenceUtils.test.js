@@ -17,6 +17,10 @@ describe('DateDifferenceUtils - daysBetween', () => {
     expect(DateDifferenceUtils.daysBetween('2025-06-30', '2025-07-02')).toBe(2);
   });
 
+  test('handles year boundary correctly', () => {
+    expect(DateDifferenceUtils.daysBetween('2024-12-31', '2025-01-01')).toBe(1);
+  });
+
   test('handles leap-year date ranges correctly', () => {
     expect(DateDifferenceUtils.daysBetween('2020-02-28', '2020-03-01')).toBe(2);
   });

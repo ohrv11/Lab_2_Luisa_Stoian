@@ -13,6 +13,14 @@ describe('StringUtils - capitalize', () => {
     expect(capitalize('')).toBe('');
   });
 
+  test('capitalizes a single lowercase letter', () => {
+    expect(capitalize('a')).toBe('A');
+  });
+
+  test('keeps a single uppercase letter unchanged', () => {
+    expect(capitalize('A')).toBe('A');
+  });
+
   test('throws when input is not a string', () => {
     expect(() => capitalize(123)).toThrow(TypeError);
   });
